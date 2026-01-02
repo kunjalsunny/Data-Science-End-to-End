@@ -1,7 +1,7 @@
 import os
 import sys
 
-from sklearn.metrics import r2_score
+from sklearn.metrics import r2_score,accuracy_score
 from sklearn.model_selection import GridSearchCV
 from src.datascience.exception import CustomException
 from src.datascience.logger import logging
@@ -46,29 +46,30 @@ def save_object(file_path,obj):
 
     except Exception as e:
         raise CustomException(e, sys)
-    
-def evaluate_models(X_train, y_train, X_test, y_test, model, params):
+
+def evaluate_models(X_train, y_train, X_test, y_test, model, params, scoring="r2"):
     try:
         report = {}
 
         for model_name, model_obj in model.items():
-            para = params.get(model_name)
+            param_grid = params.get(model_name, {})
 
-            if para:
-                gs = GridSearchCV(model_obj, para, cv=3)
+            if param_grid:
+                gs = GridSearchCV(model_obj, param_grid, cv=3, scoring=scoring)
                 gs.fit(X_train, y_train)
                 model_obj.set_params(**gs.best_params_)
 
             # Fit the (possibly tuned) model
             model_obj.fit(X_train, y_train)
 
-            y_train_pred = model_obj.predict(X_train)
             y_test_pred = model_obj.predict(X_test)
 
-            train_model_score = r2_score(y_train, y_train_pred)
-            test_model_score = r2_score(y_test, y_test_pred)
+            if scoring == "accuracy":
+                score = accuracy_score(y_test, y_test_pred)
+            else:
+                score = r2_score(y_test, y_test_pred)
 
-            report[model_name] = test_model_score
+            report[model_name] = score
 
         return report
 
