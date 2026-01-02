@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/Admin/Data%20Scientist%20Projects/End-to-End%20Project/mlruns/0/db55ab5856db48609b817ae5cc79d8c9/artifacts
+end_time: 1767336050128
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: db55ab5856db48609b817ae5cc79d8c9
+run_name: marvelous-bass-928
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767336041944
+status: 4
+tags: []
+user_id: root

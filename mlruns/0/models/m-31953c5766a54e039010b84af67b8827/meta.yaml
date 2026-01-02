@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/Admin/Data%20Scientist%20Projects/End-to-End%20Project/mlruns/0/models/m-31953c5766a54e039010b84af67b8827/artifacts
+creation_timestamp: 1767336042093
+experiment_id: '0'
+last_updated_timestamp: 1767336049780
+model_id: m-31953c5766a54e039010b84af67b8827
+model_type: null
+name: model
+source_run_id: db55ab5856db48609b817ae5cc79d8c9
+status: 2
+status_message: null

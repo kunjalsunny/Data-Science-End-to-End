@@ -108,10 +108,13 @@ class ModelTrainer:
                 predicted_qualities = best_model.predict(X_test)
                 best_model_score = accuracy_score(y_test, predicted_qualities)
 
-
-                mlflow.sklearn.log_model(best_model, "model")
                 mlflow.log_params(best_params)
                 mlflow.log_metric("accuracy", best_model_score)
+                mlflow.sklearn.log_model(
+                    best_model,
+                    artifact_path="model",
+                    registered_model_name="Titanic_Classifier_v2"  # This will version your model
+                )
             
             if tracking_url_type != "file":
                 mlflow.sklearn.log_model(best_model, "model", registered_model_name=best_model_name)

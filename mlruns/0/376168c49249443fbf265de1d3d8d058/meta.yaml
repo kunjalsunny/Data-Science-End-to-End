@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/Admin/Data%20Scientist%20Projects/End-to-End%20Project/mlruns/0/376168c49249443fbf265de1d3d8d058/artifacts
+end_time: 1767336336007
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 376168c49249443fbf265de1d3d8d058
+run_name: omniscient-shad-408
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1767336331887
+status: 4
+tags: []
+user_id: root

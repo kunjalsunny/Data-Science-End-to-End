@@ -1,4 +1,4 @@
-## End to End data science repository ##
+## End to End Titanic  ##
 
 ## MLflow Tracking (DagsHub)
 
