@@ -8,7 +8,9 @@ from flask import Flask, request, jsonify,render_template
 from src.datascience.pipelines.prediction_pipeline import CustomData, PredictPipeline
 
 
-app = Flask(__name__)
+application = Flask(__name__)
+
+app = application
 
 @app.route('/')
 def index():
