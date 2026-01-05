@@ -6,6 +6,7 @@ from src.datascience.components.data_transformation import DataTransformation, D
 from src.datascience.components.model_trainer import ModelTrainer, ModelTrainerConfig
 from flask import Flask, request, jsonify,render_template
 from src.datascience.pipelines.prediction_pipeline import CustomData, PredictPipeline
+import traceback
 
 
 application = Flask(__name__)
@@ -34,7 +35,6 @@ def predict_datapoint():
 
         pred_df = data.get_data_as_data_frame()
 
-        predict_pipeline = PredictPipeline()
         results = predict_pipeline.predict(pred_df)
         
         probability = None
@@ -45,7 +45,9 @@ def predict_datapoint():
         prediction = "Survived" if results[0] == 1 else "Did Not Survive"
         return render_template('home.html', prediction=prediction, probability=(round(probability, 2) if probability else None))
     except Exception as e:
-        raise CustomException("ERROR in /predictdata:",str(e),sys)
+        print("ERROR in /predictdata:", str(e))
+        print(traceback.format_exc())
+        return render_template("home.html", error=str(e)), 500
         
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
