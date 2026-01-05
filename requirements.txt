@@ -1,13 +1,13 @@
-Pandas
-Numpy
+pandas==2.3.3
+Numpy==2.0.2
 python-dotenv
 mysql-connector-python
 pymysql
-scikit-learn
+scikit-learn==1.6.1
 Seaborn
 catboost
 matplotlib
 xgboost
 Flask
 mlflow
-dill
+dill==0.4.0
