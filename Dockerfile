@@ -25,4 +25,4 @@ RUN pip install --no-cache-dir -e .
 EXPOSE 8080
 
 # Start the app
-CMD ["gunicorn", "-b", "0.0.0.0:8080", "application:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:8080", "application:application"]
