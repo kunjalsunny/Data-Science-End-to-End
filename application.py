@@ -12,6 +12,8 @@ application = Flask(__name__)
 
 app = application
 
+predict_pipeline = PredictPipeline()
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -42,7 +44,7 @@ def predict_datapoint():
         return render_template('home.html', prediction=prediction, probability=round(probability, 2))
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=8080)
 
     # logging.info("The execution started")
 
