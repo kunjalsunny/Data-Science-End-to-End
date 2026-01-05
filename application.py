@@ -22,7 +22,7 @@ def index():
 def predict_datapoint():
     if request.method =='GET':
         return render_template('home.html')
-    else:
+    try:
         data = CustomData(
             sex=request.form.get('sex'),
             age=int(request.form.get('age')),
@@ -37,12 +37,16 @@ def predict_datapoint():
         predict_pipeline = PredictPipeline()
         results = predict_pipeline.predict(pred_df)
         
-        # Get probability of survival (assuming classifier has predict_proba)
-        probability = predict_pipeline.predict_proba(pred_df)[0][1] * 100  # Survival probability
+        probability = None
+        # This line commonly causes 500 if predict_proba doesn't exist / model doesn't support it
+        if hasattr(predict_pipeline, "predict_proba"):
+            probability = predict_pipeline.predict_proba(pred_df)[0][1] * 100
+
         prediction = "Survived" if results[0] == 1 else "Did Not Survive"
-
-        return render_template('home.html', prediction=prediction, probability=round(probability, 2))
-
+        return render_template('home.html', prediction=prediction, probability=(round(probability, 2) if probability else None))
+    except Exception as e:
+        raise CustomException("ERROR in /predictdata:",str(e),sys)
+        
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
 
